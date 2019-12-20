@@ -214,32 +214,32 @@ body main .sec2 .box div img {
 }
 
 body main .sec2 .box .box1 {
-  background: url("/Razor Pay/icons/second_first_dark.svg") no-repeat right top;
+  background: url("../icons/second_first_dark.svg") no-repeat right top;
   background-color: #02042b;
 }
 
 body main .sec2 .box .box1:hover {
-  background: url("/Razor Pay/icons/second_first.svg") no-repeat right top;
+  background: url("../icons/second_first.svg") no-repeat right top;
   background-color: #02042b;
 }
 
 body main .sec2 .box .box2 {
-  background: url("/Razor Pay/icons/second_second.svg") no-repeat right top;
+  background: url("../icons/second_second.svg") no-repeat right top;
   background-color: #02042b;
 }
 
 body main .sec2 .box .box2:hover {
-  background: url("/Razor Pay/icons/second_second_dark.svg") no-repeat right top;
+  background: url("../icons/second_second_dark.svg") no-repeat right top;
   background-color: #02042b;
 }
 
 body main .sec2 .box .box3 {
-  background: url("/Razor Pay/icons/second_third.svg") no-repeat right top;
+  background: url("../icons/second_third.svg") no-repeat right top;
   background-color: #02042b;
 }
 
 body main .sec2 .box .box3:hover {
-  background: url("/Razor Pay/icons/second_third-dark-bg.svg") no-repeat right top;
+  background: url("../icons/second_third-dark-bg.svg") no-repeat right top;
   background-color: #02042b;
 }
 
@@ -306,52 +306,52 @@ body main .sec3 div h1 {
 }
 
 body main .sec3 .sec31 {
-  background: url("/Razor Pay/icons/sec31.svg") no-repeat;
+  background: url("../icons/sec31.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec31:hover {
-  background: url("/Razor Pay/icons/sec31_hovor.svg") no-repeat;
+  background: url("../icons/sec31_hovor.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec32 {
-  background: url("/Razor Pay/icons/sec32.svg") no-repeat;
+  background: url("../icons/sec32.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec32:hover {
-  background: url("/Razor Pay/icons/sec32_hover.svg") no-repeat;
+  background: url("../icons/sec32_hover.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec33 {
-  background: url("/Razor Pay/icons/sec33.svg") no-repeat;
+  background: url("../icons/sec33.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec33:hover {
-  background: url("/Razor Pay/icons/sec33_hover.svg") no-repeat;
+  background: url("../icons/sec33_hover.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec34 {
-  background: url("/Razor Pay/icons/sec34.svg") no-repeat;
+  background: url("../icons/sec34.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec34:hover {
-  background: url("/Razor Pay/icons/sec34_hover.svg") no-repeat;
+  background: url("../icons/sec34_hover.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec35 {
-  background: url("/Razor Pay/icons/sec35.svg") no-repeat;
+  background: url("../icons/sec35.svg") no-repeat;
   background-color: white;
 }
 
 body main .sec3 .sec35:hover {
-  background: url("/Razor Pay/icons/sec35_hever.svg") no-repeat;
+  background: url("../icons/sec35_hever.svg") no-repeat;
   background-color: white;
 }
 
@@ -376,7 +376,6 @@ body main .sec4 {
 }
 
 body main .sec4 div {
-  background-color: yellow;
   width: 323px;
   height: 290px;
   margin: 20px 10px;
@@ -397,7 +396,7 @@ body main .sec4 .sec41 {
 }
 
 body main .sec4 .sec41:hover {
-  background: url("/Razor Pay/icons/sec41_bg.svg") no-repeat right bottom;
+  background: url("../icons/sec41_bg.svg") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 
@@ -406,7 +405,7 @@ body main .sec4 .sec42 {
 }
 
 body main .sec4 .sec42:hover {
-  background: url("/Razor Pay/icons/sec42_bg.png") no-repeat right bottom;
+  background: url("../icons/sec42_bg.png") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 
@@ -415,7 +414,7 @@ body main .sec4 .sec43 {
 }
 
 body main .sec4 .sec43:hover {
-  background: url("/Razor Pay/icons/sec43_bg.svg") no-repeat right bottom;
+  background: url("../icons/sec43_bg.svg") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 
@@ -424,7 +423,7 @@ body main .sec4 .sec44 {
 }
 
 body main .sec4 .sec44:hover {
-  background: url("/Razor Pay/icons/sec44_bg.svg") no-repeat right bottom;
+  background: url("../icons/sec44_bg.svg") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 
@@ -433,7 +432,7 @@ body main .sec4 .sec45 {
 }
 
 body main .sec4 .sec45:hover {
-  background: url("/Razor Pay/icons/sec45_bg.svg") no-repeat right bottom;
+  background: url("../icons/sec45_bg.svg") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 
@@ -442,7 +441,7 @@ body main .sec4 .sec46 {
 }
 
 body main .sec4 .sec46:hover {
-  background: url("/Razor Pay/icons/sec46_bg.svg") no-repeat right bottom;
+  background: url("../icons/sec46_bg.svg") no-repeat right bottom;
   background-color: rgba(221, 236, 229, 0.623);
 }
 /*# sourceMappingURL=index.css.map */
