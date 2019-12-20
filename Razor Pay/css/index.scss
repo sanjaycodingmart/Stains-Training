@@ -1,0 +1,374 @@
+$second_text_color:rgba(255,255,255,0.7);
+
+@mixin desktop($desktop) {
+    @media screen and (max-width: $desktop) {
+        @content;
+    }
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Muli,BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto",sans-serif;
+    background-color: white;
+    //#02042b
+    // clip-path: polygon(0 0, 100% 0, 100% 72%, 86% 83%, 0 70%);
+    
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #02042b;
+        margin: 0;
+        padding: 8px 10%;
+
+        @include desktop(1024px){
+            padding: 8px 1%;
+        }
+
+        .navline{
+            display: none;
+            @include desktop(1024px){
+                display: block;
+            }
+        }
+
+        .gh{
+            @include desktop(1024px){
+                display: none;
+            }
+        }
+
+        .flexx{
+            display: flex;
+
+            a{
+                color: $second_text_color;
+                padding: 17px;
+            }
+        }
+        .logo_white{
+            width: 135px;
+        }
+    }
+    main{
+
+
+        .figure1img{
+            position: absolute;
+            width: 810px;
+            z-index: 1;
+            right: 200px;
+
+            @include desktop(1024px){
+                top: 500px;
+                right: 150px;
+                }
+        }
+        .figure1{
+            // width: 100%;
+            height: 605px;
+            // background: url("/Razor Pay/icons/figure1.png") no-repeat center;
+            // background-size: 810px;
+            background-color: #02042b;
+            padding: 0px 0px 0 170px;
+            clip-path: polygon(0 0, 100% 0, 100% 91%, 88% 100%, 0 84%);
+            @include desktop(1024px){
+                height: 1200px;
+                }
+            
+            
+
+            form{
+                width: fit-content;
+                display: flex;
+
+                input{
+                    padding: 17px 0 17px 14px;
+                    width: 221px;
+                    border-radius: 3px 0 0 3px;
+                    border: 1px solid #2783f3;
+                    background-color: #02042b;
+                }
+                button{
+                    padding: 17px 45px 17px 10px;
+                    border-radius: 0 3px 3px 0;
+                    border: 1px solid #2783f3;
+                    background-color: #2783f3;
+                    color: white;
+                }
+            }
+            .figure1txt{
+                h1{
+                    color: #fff;
+                    font-size: 40px;
+                    line-height: 53px;
+                    font-weight: 800;
+                    max-width: 450px;
+                    margin-top: 0;
+                    padding-top: 50px;
+                    &::after{
+                        width: 24px;
+                        height: 4px;
+                        content: '';
+                        background-color: #58c19c;
+                        display: block;
+                        margin-top: 30px;
+                        margin-bottom: 30px;
+                    }
+                }
+                p{
+                    color: $second_text_color;
+                    max-width: 430px;
+                    font-size: 18px;
+                    line-height: 28px;
+                }
+            }
+       
+        }
+        .sec2{
+            h1{
+                display: flex;
+                justify-content: center;
+                &::after{
+                    width: 24px;
+                    height: 4px;
+                    content: ' ';
+                    background-color: #58c19c;
+                    display: block;
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                }
+            }
+            .box{
+                display: flex;
+                padding: 0 202px;
+                @include desktop(1024px){
+                    flex-direction:  column;
+                    place-items: center;
+                    }
+                
+
+                div{
+                    margin: 0 16px;
+                    width: 653px;
+                    height: 392px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 24px;
+                    border-radius: 8px;
+                    color: white;
+
+                    @include desktop(1024px){
+                        width: 290px;
+                        margin: 20px;
+
+                    }
+
+                    p{
+                        color: $second_text_color;
+                    }
+                    a{
+                        color: white;
+                    }
+                    img{
+                        width: fit-content;
+                    }
+                }
+                .box1{
+                    background: url("/Razor Pay/icons/second_first_dark.svg") no-repeat right top;
+                    background-color: #02042b;
+                    &:hover{
+                        background: url("/Razor Pay/icons/second_first.svg") no-repeat right top;
+                        background-color: #02042b;
+                    }
+                }
+                .box2{
+                    background: url("/Razor Pay/icons/second_second.svg") no-repeat right top;
+                    background-color: #02042b;
+                    &:hover{
+                        background: url("/Razor Pay/icons/second_second_dark.svg") no-repeat right top;
+                        background-color: #02042b;
+                    }
+                }
+                .box3{
+                    background: url("/Razor Pay/icons/second_third.svg") no-repeat right top;
+                    background-color: #02042b;
+                    &:hover{
+                        background: url("/Razor Pay/icons/second_third-dark-bg.svg") no-repeat right top;
+                        background-color: #02042b;
+                    }
+                }
+            }
+        }
+        .sec3_back{
+            clip-path: polygon(0 0, 97% 49%, 0 100%);
+            background: linear-gradient(138.77deg,#0a1157 21.17%,#0a1157 21.18%,#1d51a8 94.74%);
+            height: 687px;
+            width: 60%;
+            position: absolute;
+            z-index: -1;
+
+
+            // @include desktop(1024px){
+            //     height: 105px;
+            //     width: 10%;
+            // }
+
+
+        }
+        .sec3_back2{
+            clip-path: polygon(100% 0, 100% 100%, 0 51%);
+            background: linear-gradient(138.77deg,#0a1157 21.17%,#0a1157 21.18%,#1d51a8 94.74%);
+            height: 387px;
+            width: 18%;
+            right: 0px;
+            top: 1900px;
+            position: absolute;
+            z-index: -1;
+        }
+        .sec3{
+            display: grid;
+            grid-template-columns: repeat(3, 33.33%);
+            place-items: center;
+            margin: 0 160px;
+            margin-top: 175px;
+
+            @include desktop(1024px){
+                grid-template-columns: repeat(1, 100%);
+            }
+
+            div{
+                width: 323px;
+                height: 290px;
+                margin: 20px 10px;
+                border-radius: 8px;
+                &:nth-child(1){
+                    padding: 50px;
+                }
+                h1{
+                    font-size: 37px;
+                    color: white;
+                }
+
+                @include desktop(1024px){
+                    width: 454px;
+                    height: 200px;
+                }
+
+                
+            }
+            .sec31{
+                background: url("/Razor Pay/icons/sec31.svg") no-repeat;
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec31_hovor.svg") no-repeat;
+                    background-color: white;
+                }
+            }
+            .sec32{
+                background: url("/Razor Pay/icons/sec32.svg") no-repeat;
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec32_hover.svg") no-repeat;
+                    background-color: white;
+                }
+            }
+            .sec33{
+                background: url("/Razor Pay/icons/sec33.svg") no-repeat;
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec33_hover.svg") no-repeat;
+                    background-color: white;
+                }
+            }
+            .sec34{
+                background: url("/Razor Pay/icons/sec34.svg") no-repeat;
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec34_hover.svg") no-repeat;
+                    background-color: white;
+                }
+            }
+            .sec35{
+                background: url("/Razor Pay/icons/sec35.svg") no-repeat;
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec35_hever.svg") no-repeat;
+                    background-color: white;
+                }
+            }
+        }
+        .sect4{
+            h1,p{
+                text-align: center;
+            }
+        }
+        .sec4{
+            display: grid;
+            grid-template-columns: repeat(3, 33.33%);
+            place-items: center;
+            margin: 0 160px;
+
+            @include desktop(1024px){
+                grid-template-columns: repeat(1, 100%);
+            }
+
+            div{
+                background-color: yellow;
+                width: 323px;
+                height: 290px;
+                margin: 20px 10px;
+                display: flex;
+                flex-direction: column;
+                place-items: center;
+                text-align: center;
+                border-radius: 8px;
+            }
+            .sec41{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec41_bg.svg") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            .sec42{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec42_bg.png") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            .sec43{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec43_bg.svg") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            .sec44{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec44_bg.svg") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            .sec45{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec45_bg.svg") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            .sec46{
+                background-color: white;
+                &:hover{
+                    background: url("/Razor Pay/icons/sec46_bg.svg") no-repeat right bottom;
+                    background-color: rgba(221, 236, 229, 0.623);
+                }
+            }
+            
+        }
+    }
+}
