@@ -12,8 +12,8 @@ let posX = 200,
     vy = -10;
 let xVal =canvas.width,
     xValdo1 =canvas.width+300,
-    xVal2 =canvas.width+500,
-    xValdo2 =canvas.width+700; 
+    xVal2 =canvas.width+480,
+    xValdo2 =canvas.width+720; 
 let yVal=canvas.height;
 
 let d1=d2=d3=d4=6;
@@ -73,28 +73,40 @@ document.addEventListener('keypress', (e)=>{
             c.strokeText("0 0", posX, posY+1);
             c.strokeText("=", posX, posY+30);
             
-            
-            //repeating rect
-            if(xVal<-100){
-                xVal = canvas.width+200; 
-                d1=Math.floor(Math.random()*10)+5;
+
+            // console.log('1: '+d3);
+            // console.log('wdth : '+canvas.width);
+            // console.log('xval2 : '+xVal);
+            //adding score          
+            if(xVal ==(((Math.floor(100/d1)+1)*d1)+(canvas.width%d1)) ){
+                score.innerHTML=parseInt(score.innerHTML)+1;
             }
-            if(xVal2<-100){
-                xVal2 = canvas.width+200; 
-                d2=Math.floor(Math.random()*10)+5;
+            if(xVal2 ==(((Math.floor(100/d3)+1)*d3)+(canvas.width%d3)) ){
+                score.innerHTML=parseInt(score.innerHTML)+1;
             }
-            if(xValdo1<-100){
-                xValdo1 = canvas.width+200; 
-                d3=Math.floor(Math.random()*10)+5;
+            if(xValdo1 ==(((Math.floor(100/d2)+1)*d2)+(canvas.width%d2)) ){
+                score.innerHTML=parseInt(score.innerHTML)+1;
             }
-            if(xValdo2<-100){
-                xValdo2 = canvas.width+200; 
-                d4=Math.floor(Math.random()*10)+5;
+            if(xValdo2 ==(((Math.floor(100/d4)+1)*d4)+(canvas.width%d4)) ){
+                score.innerHTML=parseInt(score.innerHTML)+1;
             }
 
-            //adding score  
-            if(xVal <=100 && xVal >96 || xVal2 <=100 && xVal2 >96 || xValdo1 <=100 && xValdo1 >96 || xValdo2 <=100 && xValdo2 >96 ){
-                score.innerHTML=parseInt(score.innerHTML)+1;
+             //repeating rect
+             if(xVal<-100){
+                d1=Math.floor(Math.random()*10)+5;
+                xVal = canvas.width+d1*10; 
+            }
+            if(xVal2<-100){
+                d3=Math.floor(Math.random()*10)+5;
+                xVal2 = canvas.width+d3*10; 
+            }
+            if(xValdo1<-100){
+                d2=Math.floor(Math.random()*10)+5;
+                xValdo1 = canvas.width+d2*10; 
+            }
+            if(xValdo2<-100){
+                d4=Math.floor(Math.random()*10)+5;
+                xValdo2 = canvas.width+d4*10; 
             }
 
             //chack whether touch
