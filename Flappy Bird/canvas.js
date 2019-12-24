@@ -7,8 +7,6 @@ canvas.height=window.innerHeight;
 
 let c = canvas.getContext('2d');
 
-
-
 let posX = 200,
     posY = 200;
     vy = -10;
@@ -18,7 +16,7 @@ let xVal =canvas.width,
     xValdo2 =canvas.width+700; 
 let yVal=canvas.height;
 
-let d1=3,d2=4,d3=5,d4=3;
+let d1=d2=d3=d4=6;
 
 //initial stage
 let jj=3;
@@ -45,8 +43,6 @@ document.addEventListener('keypress', (e)=>{
     if(e.code=='Space'){
     //to stop initial animation
     clearInterval(frst);
-
-    score.innerHTML='0';
 
     let id=setInterval(function(){
             
@@ -77,6 +73,7 @@ document.addEventListener('keypress', (e)=>{
             c.strokeText("0 0", posX, posY+1);
             c.strokeText("=", posX, posY+30);
             
+            
             //repeating rect
             if(xVal<-100){
                 xVal = canvas.width+200; 
@@ -95,26 +92,25 @@ document.addEventListener('keypress', (e)=>{
                 d4=Math.floor(Math.random()*10)+5;
             }
 
-
-            //adding score
-            if(xVal ==99 || xVal2==99 || xValdo1==99 || xValdo2==99){
+            //adding score  
+            if(xVal <=100 && xVal >96 || xVal2 <=100 && xVal2 >96 || xValdo1 <=100 && xValdo1 >96 || xValdo2 <=100 && xValdo2 >96 ){
                 score.innerHTML=parseInt(score.innerHTML)+1;
             }
 
             //chack whether touch
-            if(xVal<=245 && xVal>=100 && posY<=200){
+            if(xVal<=245 && xVal>=100 && posY<245){
                 clearInterval(id);
                 alert('Game Over');
             }
-            if(xVal2<=245 && xVal2>=100 && posY<=150){
+            if(xVal2<=245 && xVal2>=100 && posY<195){
                 clearInterval(id);
                 alert('Game Over');
             }
-            if(xValdo1<=245 && xValdo1>=100 && posY>=yVal-200){
+            if(xValdo1<=245 && xValdo1>=100 && posY>yVal-244){
                 clearInterval(id);
                 alert('Game Over');
             }
-            if(xValdo2<=245 && xValdo2>=100 && posY>=yVal-150){
+            if(xValdo2<=245 && xValdo2>=100 && posY>yVal-194){
                 clearInterval(id);
                 alert('Game Over');
             }
@@ -123,6 +119,7 @@ document.addEventListener('keypress', (e)=>{
             if(posY>yVal-45 || posY<45){
                 clearInterval(id);
                 alert('Game Over');
+                
             }
 
 
