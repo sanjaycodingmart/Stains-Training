@@ -1,4 +1,6 @@
 let canvas = document.querySelector('canvas');
+let score =document.querySelector('#score');
+
 canvas.style.backgroundColor='skyblue';
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
@@ -27,6 +29,9 @@ let frst=setInterval(function(){
     c.fillStyle='yellow';
     c.arc(posX,posY+=jj,45,0,Math.PI * 2,false);
     c.fill();
+    c.font = "20px Georgia";
+    c.strokeText("0 0", posX, posY+1);
+    c.strokeText("=", posX, posY+30);
     if(posY>230 || posY<180){
         jj=-jj;
     }
@@ -36,11 +41,13 @@ let frst=setInterval(function(){
 //when game started
 document.addEventListener('keypress', (e)=>{
     //to make the ball bounce
-    vy=-10;
-    
+    vy=-12;
     if(e.code=='Space'){
     //to stop initial animation
     clearInterval(frst);
+
+    score.innerHTML='0';
+
     let id=setInterval(function(){
             
             //background
@@ -64,26 +71,35 @@ document.addEventListener('keypress', (e)=>{
             c.fillStyle='yellow';
             c.arc(posX,posY,45,0,Math.PI * 2,false);
             c.fill();
+            c.strokeStyle='black';
+            c.stroke();
+            c.font = "20px Georgia";
+            c.strokeText("0 0", posX, posY+1);
+            c.strokeText("=", posX, posY+30);
             
             //repeating rect
             if(xVal<-100){
                 xVal = canvas.width+200; 
-                d1=Math.floor(Math.random()*5)+2;
+                d1=Math.floor(Math.random()*10)+5;
             }
             if(xVal2<-100){
                 xVal2 = canvas.width+200; 
-                d2=Math.floor(Math.random()*5)+2;
+                d2=Math.floor(Math.random()*10)+5;
             }
             if(xValdo1<-100){
                 xValdo1 = canvas.width+200; 
-                d3=Math.floor(Math.random()*5)+2;
+                d3=Math.floor(Math.random()*10)+5;
             }
             if(xValdo2<-100){
                 xValdo2 = canvas.width+200; 
-                d4=Math.floor(Math.random()*5)+2;
+                d4=Math.floor(Math.random()*10)+5;
             }
 
 
+            //adding score
+            if(xVal ==99 || xVal2==99 || xValdo1==99 || xValdo2==99){
+                score.innerHTML=parseInt(score.innerHTML)+1;
+            }
 
             //chack whether touch
             if(xVal<=245 && xVal>=100 && posY<=200){
@@ -104,7 +120,7 @@ document.addEventListener('keypress', (e)=>{
             }
 
             //check edge touch
-            if(posY<45 || posY>yVal-45){
+            if(posY>yVal-45 || posY<45){
                 clearInterval(id);
                 alert('Game Over');
             }
@@ -121,165 +137,3 @@ document.addEventListener('keypress', (e)=>{
         },30); 
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let xVal =canvas.width; 
-// document.addEventListener('keypress', (e)=>{
-
-    // if(e.code=='KeyM'){
-    // let id=setInterval(function(){
-    //     c.fillStyle='black';
-    //     c.fillRect(0,0,canvas.width,canvas.height);
-        // c.fillStyle='green';
-        // c.fillRect(xVal-=3 , 0 ,100 ,200);
-        // console.log(xVal);
-        // if(xVal<-100){
-        //     xVal = canvas.width+200; 
-        // }
-//             document.addEventListener('keypress', (e)=>{
-//                 if(e.code=='KeyM'){
-//                     clearInterval(id);
-//                 }
-//             });
-        
-//         },30); 
-//     }
-// });
-
-////////////////////////////////////////////////////////////////////////
-// let y=300;
-// let a=300;
-// let dy=-3;
-// function jump(){
-//     a+=dy;
-    
-//     c.clearRect(0,0,window.innerWidth,window.innerHeight);
-//     requestAnimationFrame(jump);
-//     c.beginPath();
-//     c.arc(200,a,45,0,Math.PI * 2,false);
-//     c.fillStyle='yellow';
-//     c.fill();
-//     c.stroke();
-
-//     if(a<=170){
-//         dy = -dy;
-//     }
-// }
-// // function updown(){
-    
-// //     c.clearRect(0,0,window.innerWidth,window.innerHeight);
-// //     requestAnimationFrame(updown);
-// //     c.beginPath();
-// //     c.arc(200,y+=dy,45,0,Math.PI * 2,false);
-// //     c.fillStyle='yellow';
-// //     c.fill();
-// //     c.stroke();
-
-// //     if(y>320 || y<270){
-// //         dy = -dy;
-// //     }
-    
-    
-// // }
-// document.addEventListener('keypress', (e)=>{
-//     if(e.code=='Space'){
-//         dy=-3;
-//         jump() ;
-//     }
-// });
-// // updown(); 
-/////////////////////////////////////////////////////////////////////////////////
-
-// let x=200,y=200;
-// let dx = 4,dy=4;
-
-// function Animation(){
-//     c.clearRect(0,0,window.innerWidth,window.innerHeight);
-//     requestAnimationFrame(Animation);
-//     c.beginPath();
-//     c.arc(x+=dx,y+=dy,45,0,Math.PI * 2,false)
-//     c.strokeStyle = 'rgba(255,0,0,0.5)';
-//     c.fillStyle='yellow';
-//     c.fill();
-
-//     if(x>=window.innerWidth || x<=0){
-//         dx= -dx;
-//     }
-//     if(y>=window.innerHeight|| y<=0){
-//         dy = -dy;
-//     }
-//     console.log('sdsds');
-// }
-// Animation();
-
-// //console.log(canvas);
