@@ -1,4 +1,5 @@
-const api = 'M9hikonu4VTGugShMmjIglQMF40v33Tk';
+
+let api = apiCall();
 let search = '';
 count = 0;
 let url = 'http://api.giphy.com/v1/gifs/trending?api_key='+api+'&offset='+count;
