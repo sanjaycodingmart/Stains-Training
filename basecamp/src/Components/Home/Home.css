@@ -1,0 +1,7 @@
+.activityCard{
+    display: none;
+}
+.todoheader{
+    display: flex;
+    justify-content: space-between;
+}

@@ -15,9 +15,19 @@ class Register extends Component {
     }
 
     async register(name,pass){
-        const response = await fetch('http://localhost:4000/register?name='+name+'&password='+pass);
-        const json = await response.text();
-        console.log(json);
+        if(name.length>5 && pass.length>=4){
+            const response = await fetch('http://localhost:4001/register?name='+name+'&password='+pass);
+            const json = await response.text();
+            console.log(json);
+
+            this.props.history.push({
+                pathname: '/home',
+                state: { user_id: 1 }//changeeee
+              });
+        }else{
+            alert('not valid');
+        }
+        
     }
     onsubmit = ()=>{
         let name=this.state.name;
@@ -27,13 +37,16 @@ class Register extends Component {
     
     render() {
         return (
-            <div>
+            <div className="regDiv">
+                
+                <div className="regDiv1">
+                <img className="signinLogo" src="https://launchpad-asset2.37signals.com/assets/brand-wrapper-backgrounds/paperclip-logo-349bf403c234be9d67457f2825054e138f6d54affe467717f3da909cab741cba.svg" alt="logo"></img>
                 <Form onSubmit={this.onsubmit}>
                     <Input placeholder="Basic usage" onChange={this.onchangename} id="name"/>
                     <Input.Password placeholder="input password" onChange={this.onchangename} id="password"/>
-                    <Link to="/home"><Button type="primary" onClick={this.onsubmit}>Sign Up</Button></Link>
+                    <Button type="primary" onClick={this.onsubmit}>Sign Up</Button>
                 </Form>
-            </div>
+            </div></div>
         )
     }
 }
