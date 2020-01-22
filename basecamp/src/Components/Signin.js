@@ -19,6 +19,7 @@ class Signin extends Component {
     async signin(){
         console.log(this.state);
         const response = await fetch('http://localhost:4001/signin?name='+this.state.name+'&password='+this.state.password);
+        console.log(response);
         if(response.status===200){
             this.props.history.push({
                 pathname: '/home',

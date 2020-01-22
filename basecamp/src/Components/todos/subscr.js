@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Select, Button } from 'antd'
-import { Comment, Icon, Tooltip, Avatar } from 'antd';
-import moment from 'moment';
+import { Icon, Tooltip } from 'antd';
 import Comments from './comments'
 
 const { Option } = Select;
@@ -35,7 +34,7 @@ async assignUser(uid,it_id){
     console.log('ideeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',uid,it_id)
     const response1 = await fetch(`http://localhost:4001/item/assignUser?user_id=${uid}&item_id=${it_id}`);
     const response2 = await fetch(`http://localhost:4001/box/assign?user_id=${uid}&box_id=${this.props.box_id}`);
-    console.log('rrrrr',response2)
+    // console.log('rrrrr',response2)
 }
 
 async addsubscr(){
@@ -112,7 +111,7 @@ like = () => {
   async showComment(){
     const response = await fetch(`http://localhost:4001/item/showComment?list_id=${this.props.list_id}`);
     const json = await response.json();
-    console.log('commentsssss availableeee:;;::::::',json.rows)
+    // console.log('commentsssss availableeee:;;::::::',json.rows)
     let abc = await json.rows
     this.setState({commentList:json.rows,
     },()=>{console.log('after getting all comment List',this.state.commentList)});

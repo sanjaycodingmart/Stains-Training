@@ -6,9 +6,9 @@ import Activity from './Home/Activity';
 import Todos from './Home/Todos'
 import Iteme from './todos/iteme'
 
-import { List,Avatar} from 'antd';
+import { Avatar} from 'antd';
 import { Drawer, Form,  Col, Row, Input, Select, DatePicker, Icon } from 'antd';
-import { Upload, message, Button } from 'antd';
+import { message, Button } from 'antd';
 const { Option } = Select;
 const props = {
     name: 'file',
@@ -32,7 +32,7 @@ class Home extends Component {
     
 
     state={  
-        user_id:1,
+        user_id:2,
         list_heads:[],
         list_id:0,
         lst_hd:'',
@@ -125,7 +125,19 @@ changeName(e){
 async ProfileUpdate(){
     this.onClose();
     let a = this.state.dummy_details;
-    const response = await fetch(`http://localhost:4001/user/update?name=${a.name}&password=${a.password}&email=${a.email}&phone=${a.phone}&gender=${a.gender}&user_id=${a.user_id}&avatar=${a.avatar}`);
+    const response = await fetch(`http://localhost:4001/user/update`,{
+      method:'post',
+      headers:{'Content-Type':'application/json', 'charset':'utf-8'},
+      body: JSON.stringify({
+        name:a.name,
+        password:a.password,
+        email:a.email,
+        phone:a.phone,
+        gender:a.gender,
+        user_id:a.user_id,
+        avatar:a.avatar
+      })
+    });
     // const json = await response.json();
 }
 
@@ -227,7 +239,6 @@ async ProfileUpdate(){
                     <Switch>
                         <Route path="/home/" exact component={()=> (
                             <div>  <Section user_id={this.state.user_id} box_type="Teams" passList={this.passList.bind(this)}/>
-                                    {/* <Section user_name={this.state.user_name} table_type="Projects" fncn={this.tableNamechange.bind(this)}             array={this.state.projects} tableNum={this.state.protableNumber}  did={this.abc.bind(this)} did1={this.abcd.bind(this)} deleteT={this.deleteTable.bind(this)}/></div> */}
                                     <Section user_id={this.state.user_id} box_type="Projects" passList={this.passList.bind(this)}/></div>
                             )}/>
                         <Route path="/home/activity" exact component={()=> <Activity list_heads={this.state.list_heads}/>}></Route>

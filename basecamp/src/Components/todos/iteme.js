@@ -33,7 +33,7 @@ class iteme extends Component {
         const json = await response.json();
         console.log('gooooooooot',json)
         this.getItems();
-        return json.item_id//,list_id:json[0].rows[0].list_id}//{item_id:
+        return json.item_id
     }
     handleChange(e){
         this.setState({

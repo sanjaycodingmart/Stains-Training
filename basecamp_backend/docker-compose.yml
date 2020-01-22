@@ -1,0 +1,18 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment: 
+      POSTGRES_PASSWORD: password1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: demodb
+    volumes:
+      - './:/var/lib/postgresql'
+    ports:
+      - '5432:5432'
+
+
+  web:
+    image: stainsmj/todoapp
+    ports:
+      - "4001:4001"

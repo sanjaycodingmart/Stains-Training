@@ -13,7 +13,6 @@ class Box extends Component {
 getAva(){
     this.props.box.user_id_array.map(e=>{
         this.avaa(e);
-        // console.log('srccccccccccccccccc',ava)
     })
 }
 async avaa(a){

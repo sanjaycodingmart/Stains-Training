@@ -41,8 +41,26 @@ onType(e){
         newHead:a
     })
 }
+
+
+//fetch('https://api.github.com/gists', {
+//   method: 'post',
+//   body: JSON.stringify(opts)
+// })
+
+
+
 async handleSubmit(){       
-    const response = await fetch(`http://localhost:4001/box/new?box_head=${this.state.newHead}&user_id=${this.props.user_id}&box_type=${this.props.box_type}`);
+    // const response = await fetch(`http://localhost:4001/box/new?box_head=${this.state.newHead}&user_id=${this.props.user_id}&box_type=${this.props.box_type}`);
+    const response = await fetch(`http://localhost:4001/box/new`,{
+      method: 'post',
+      headers:{'Content-Type':'application/json; charset=utf-8'},
+      body: JSON.stringify({
+        box_head:this.state.newHead,
+        user_id:this.props.user_id,
+        box_type:this.props.box_type
+      })
+    })
     const json = await response.json();
     console.log(json);    
     this.refresh();
@@ -61,8 +79,11 @@ componentDidMount(){
 }
 //deleting content
 async delete_box(id){
-  console.log('Deleting')
-const response = await fetch(`http://localhost:4001/box/delete?user_id=${this.props.user_id}&box_type=${this.props.box_type}&box_id=${id}`);
+const response = await fetch(`http://localhost:4001/box/delete`,{
+      method: 'post',
+      headers:{'Content-Type':'application/json', 'charset':'utf-8'},
+      body: JSON.stringify({ box_id:id })
+    });
 const json = await response.json();
 console.log(json.rows)
 this.refresh();

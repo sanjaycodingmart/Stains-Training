@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Comment, Icon, Tooltip, Avatar, Input, Button } from 'antd';
+import { Comment, Icon, Tooltip, Avatar, Input } from 'antd';
 import moment from 'moment';
 import Comments from './comments2'
 

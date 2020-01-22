@@ -1,0 +1,867 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an api documentation for Basecamp API. Ypu can find more on endpoints and documentation for front-end development below...",
+    "version": "1.0.1",
+    "title": "Basecamp API",
+    "termsOfService": "",
+    "contact": {
+      "email": "grahamstains1999@gmail.com"
+    },
+    "license": {
+      "name": "",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:4001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Signin",
+      "description": "Everything about user registration and signin.",
+      "externalDocs": {
+        "description": "",
+        "url": "http://localhost:4001/signin"
+      }
+    },
+    {
+      "name": "Home",
+      "description": "Access the available teams and projects, also edit, create ,delete"
+    },
+    {
+      "name": "Todo",
+      "description": "Operations related to adding new list and list items."
+    },
+    {
+      "name": "Comment",
+      "description": "Everything related to add comment, like,dislike,reply...",
+      "externalDocs": {
+        "description": "",
+        "url": "http://localhost:4001/comment"
+      }
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/signin": {
+      "get": {
+        "tags": [
+          "Signin"
+        ],
+        "summary": "Finds whether the username exists and returns status code",
+        "description": "You can query with the username and password, if the username and password is correct or existing it returns a status code of 200, else 401.",
+        "operationId": "findPetsByStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "username of the existing user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password for the user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Invalid user"
+          }
+        }
+      }
+    },
+    "/box/refresh": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Gets all the available teams and projects.",
+        "description": "Input the userId and the type of cell, then you will be getting an array of objects, which consist of your Teams / Projects data.",
+        "operationId": "findPetsByTags",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "userid of the current user",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "box_type",
+            "in": "query",
+            "description": "type of the cell (Teams/Projects)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid tag value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/box/delete": {
+      "post": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Delete a single cell.",
+        "description": "delete a cell inside Teams or Projects section which has the parameter id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "body",
+            "description": "ID of cell that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "box_id": {
+                  "type": "integer"
+                }
+              },
+              "example": {
+                "box_id": 10
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Deleted"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/box/new": {
+      "post": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Create a new cell.",
+        "description": "Creates a new cell in the desired location if the type(Teams/Projects) , Current userId and the title you need to give on that cell.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_head",
+            "in": "body",
+            "description": "New heading that you wish to give.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "box_head": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "box_type": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "box_head": "new cell",
+                "user_id": 1,
+                "box_type": "Teams"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Inserted"
+          },
+          "400": {
+            "description": "Input Failure"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/box/pass": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "gets all lists inside the box/cell.",
+        "description": "This will fetch all the lists that is created earlier by any of the user in this current cell.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "query",
+            "description": "id of the cell which user expects the data.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id value "
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/get": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "gets all the details of the current user.(signed-in user)",
+        "description": "This will fetch all the details of the current user incase you need to show the profile details or anything.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "id of the user.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id value "
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/update": {
+      "post": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Updates the user info.",
+        "description": "The object values will update the user with the new values.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_head",
+            "in": "body",
+            "description": "New heading that you wish to give.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "integer"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "xxxx",
+                "password": 1234,
+                "email": "abc@gmail.com",
+                "phone": "9672686289",
+                "gender": "Male",
+                "avatar": "url...",
+                "user_id": 5
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Inserted"
+          },
+          "400": {
+            "description": "Input Failure"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/avatar": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Returns avatar of desired user.",
+        "description": "This will fetch the avatar or profile picture of the given user_id.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "id of the user.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id value "
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/box/addList": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Insert a new List to the current cell.",
+        "description": "This will insert heading of the list and creates a new list.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "query",
+            "description": "id of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "list_head",
+            "in": "query",
+            "description": "id of the user.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id value "
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/todo/getItem": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Returns all the contents inside a specific list.",
+        "description": "This will take list_id as a parameter and returns all the items. If no items or wrong id, it returns an empty array.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/addvalue": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Insert a new item..",
+        "description": "This will insert a new item to the itemTable and returns the current id of the newly added item.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "item_head",
+            "in": "query",
+            "description": "new item name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/assignUser": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Assigns any user to a specific task, or an item of the list",
+        "description": "This will insert a new item to the itemTable and returns the current id of the newly added item.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "new item name",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/box/assign": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Assigns a user to a cell in the home page",
+        "description": "This will insert the userId to the cell ,so that we can know all assigned users of a cell from the homescreen itself.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "box_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "new item name",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/users": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Returns all the usernames available.",
+        "description": "This will returs all the users of this database.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/comment": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Adding new Comment",
+        "description": "This will insert a comment in the specified list and the specified user_id.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "new item name",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "comment",
+            "in": "query",
+            "description": "new item name",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/showComment": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Refreshing existing comments.",
+        "description": "This will refresh all comments for the perticular list.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/likes": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Adding like or dislike.",
+        "description": "This will add a like or dislike for a comment.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "description": "id of the list.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "likes",
+            "in": "query",
+            "description": "true if liked.",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "dislikes",
+            "in": "query",
+            "description": "true if disliked.",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/item/showReply": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Refresh all the replys for a perticular comment.",
+        "description": "This will fetch the replys if any available.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "query",
+            "description": "id of the comment",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/reply/add": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Add a new reply to a specific comment.",
+        "description": "This will add a new replys to a comment.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "query",
+            "description": "id of the comment",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "id of the comment",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "reply",
+            "in": "query",
+            "description": "id of the comment",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  }
+}
